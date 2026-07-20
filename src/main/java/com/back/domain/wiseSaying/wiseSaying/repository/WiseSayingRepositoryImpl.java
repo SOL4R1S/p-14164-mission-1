@@ -5,6 +5,7 @@ import com.back.domain.wiseSaying.wiseSaying.entity.WiseSaying;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class WiseSayingRepositoryImpl implements WiseSayingRepositoryCustom {
@@ -18,9 +19,8 @@ public class WiseSayingRepositoryImpl implements WiseSayingRepositoryCustom {
     @Override
     public long qCount() {
         QWiseSaying wiseSaying = QWiseSaying.wiseSaying;
-        return queryFactory.select(wiseSaying.count())
-                .from(wiseSaying)
-                .fetchOne();
+        return Objects.requireNonNullElse(
+                queryFactory.select(wiseSaying.count()).from(wiseSaying).fetchOne(), 0L);
     }
 
     @Override

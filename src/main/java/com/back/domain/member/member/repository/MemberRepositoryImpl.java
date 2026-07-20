@@ -5,6 +5,7 @@ import com.back.domain.member.member.entity.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -30,8 +31,7 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
     @Override
     public long qCount() {
         QMember member = QMember.member;
-        return queryFactory.select(member.count())
-                .from(member)
-                .fetchOne();
+        return Objects.requireNonNullElse(
+                queryFactory.select(member.count()).from(member).fetchOne(), 0L);
     }
 }
