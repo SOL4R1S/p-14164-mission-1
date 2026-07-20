@@ -45,7 +45,7 @@ public class WiseSayingController {
                 +
                 "<ul>"
                 +
-                wiseSayingService.findAll()
+                wiseSayingService.findQAll()
                         .stream()
                         .map(wiseSaying -> "<li>%d / %s / %s</li>".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()))
                         .collect(Collectors.joining("\n"))
@@ -56,7 +56,7 @@ public class WiseSayingController {
     @GetMapping("/wiseSayings/{id}")
     @ResponseBody
     public String detail(@PathVariable int id) {
-        WiseSaying wiseSaying = wiseSayingService.findById(id).get();
+        WiseSaying wiseSaying = wiseSayingService.findQById(id).get();
 
         String html = markdownService.toHtml(wiseSaying.getContent());
 
@@ -75,7 +75,7 @@ public class WiseSayingController {
     public String delete(
             @PathVariable int id
     ) {
-        WiseSaying wiseSaying = wiseSayingService.findById(id)
+        WiseSaying wiseSaying = wiseSayingService.findQById(id)
                 .orElseThrow(
                         () -> new IllegalArgumentException("%d번 명언은 존재하지 않습니다.".formatted(id))
                 );
@@ -100,7 +100,7 @@ public class WiseSayingController {
             throw new IllegalArgumentException("Author cannot be null or blank");
         }
 
-        WiseSaying wiseSaying = wiseSayingService.findById(id)
+        WiseSaying wiseSaying = wiseSayingService.findQById(id)
                 .orElseThrow(
                         () -> new IllegalArgumentException("%d번 명언은 존재하지 않습니다.".formatted(id))
                 );

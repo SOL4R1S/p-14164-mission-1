@@ -14,7 +14,7 @@ public class BaseInitData {
     @Bean
     ApplicationRunner baseInitDataApplicationRunner() {
         return args -> {
-            if (wiseSayingService.count() > 0) return;
+            if (wiseSayingService.qCount() > 0) return;
 
             wiseSayingService.write("명언 1", "작가 1");
             wiseSayingService.write("명언 2", "작가 2");
