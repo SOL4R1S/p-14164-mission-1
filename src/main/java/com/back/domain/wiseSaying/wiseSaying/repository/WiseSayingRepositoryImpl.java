@@ -3,11 +3,13 @@ package com.back.domain.wiseSaying.wiseSaying.repository;
 import com.back.domain.wiseSaying.wiseSaying.entity.QWiseSaying;
 import com.back.domain.wiseSaying.wiseSaying.entity.WiseSaying;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Repository
 public class WiseSayingRepositoryImpl implements WiseSayingRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
